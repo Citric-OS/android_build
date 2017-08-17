@@ -512,6 +512,13 @@ function lunch()
         return 1
     fi
 
+    if (echo -n $product | grep -q -e "^atomx_") ; then
+        ATOMX_BUILD=$(echo -n $product | sed -e 's/^atomx_//g')
+    else
+        ATOMX_BUILD=
+    fi
+    export ATOMX_BUILD
+
     _lunch_meat $product $release $variant
 }
 
