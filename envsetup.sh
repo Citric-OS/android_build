@@ -512,6 +512,10 @@ function lunch()
         return 1
     fi
 
+    local T=$(gettop)
+    $T/prebuilts/build-tools/linux-x86/bin/py3-cmd $T/vendor/atomx/build/tools/barista.py $product
+    source_vendorsetup &>/dev/null
+
     if (echo -n $product | grep -q -e "^atomx_") ; then
         ATOMX_BUILD=$(echo -n $product | sed -e 's/^atomx_//g')
     else
